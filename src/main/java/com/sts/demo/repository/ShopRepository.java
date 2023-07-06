@@ -10,5 +10,5 @@ import com.sts.demo.entity.Shop;
 
 @Repository
 public interface ShopRepository extends JpaRepository<Shop,Integer> {
-	List<Shop> findByName(String nameShop);
+	 
 }

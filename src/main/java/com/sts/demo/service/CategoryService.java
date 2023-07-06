@@ -21,9 +21,5 @@ public class CategoryService {
 		categoryRepository.findAll().forEach(category1 -> category.add(category1));  
 		return category;  
 	}
-	public List<Category> getCategoryByName(String nameCategory)   
-	{  List<Category> category = new ArrayList<Category>(); 
-		  categoryRepository.findByName(nameCategory).forEach(name1 -> category.add(name1));
-		  return category;
-	} 
+
 }

@@ -30,11 +30,5 @@ public List<Shop> getShops(){
 
 
 
-@GetMapping("/{nameShop}")  
-private List<Shop> getShop(@PathVariable("nameShop") String nameShop)   
-{  
-	return shopService.getShopByName(nameShop);  
-}  
-
 
 }

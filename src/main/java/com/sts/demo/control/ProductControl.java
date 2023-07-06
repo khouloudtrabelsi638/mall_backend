@@ -29,9 +29,5 @@ public class ProductControl {
 	public List<Product> getProducts(){
 		return  productservice.getProducts();
 	}
-	@GetMapping("/{nameProduct}")  
-	private List<Product> getProduct(@PathVariable("nameProduct") String nameProduct)   
-	{  
-		return productservice.getProductByName(nameProduct);  
-	} 
+	
 }

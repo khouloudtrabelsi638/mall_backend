@@ -12,10 +12,7 @@ import jakarta.persistence.Id;
 @DiscriminatorValue("Reduction")
 public class Reduction extends Product{
 	
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int idReduction; 
-	
+ 
 	 
 	 
 	private float newprice;
@@ -35,9 +32,9 @@ public class Reduction extends Product{
 	
 	
 	
-	public Reduction(int idReduction, float newprice, float pourcentage) {
+	public Reduction(  float newprice, float pourcentage) {
 		super();
-		this.idReduction = idReduction;
+		 
 		this.newprice = newprice;
 		this.pourcentage = pourcentage;
 	}
@@ -45,14 +42,7 @@ public class Reduction extends Product{
 
 
 
-	
-	public int getIdReduction() {
-		return idReduction;
-	}
-	public void setIdReduction(int idReduction) {
-		this.idReduction = idReduction;
-	}
-	
+	 
 	 
 	 
 	public float getNewprice() {

@@ -1,10 +1,7 @@
 package com.sts.demo.entity;
  
+ import  com.sts.demo.entity.Category;
  
-
-import java.util.Collection;
-import java.util.Locale.Category;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +27,7 @@ public class Shop {
 	
 @ManyToOne
 @JoinColumn(name="idCategory", nullable=false)
-	private Collection<Category> category;
+	private Category category;
 
 	private String timeopen;
 	private String timeclose;
@@ -81,13 +78,13 @@ public void setLocalisationShop(String localisationShop) {
 }
 
  
- public Collection<Category>  getCategory() {
+ public Category  getCategory() {
 	return category;
 }
 
 
 
-public void setCategory(Collection <Category> category) {
+public void setCategory(Category category) {
 	this.category = category;
 }
 

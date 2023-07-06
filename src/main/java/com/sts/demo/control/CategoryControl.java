@@ -31,12 +31,7 @@ public class CategoryControl {
 		return categoryservice.getCategories();
 	}
 	
-	
-	@GetMapping("/{nameCategory}")  
-	private List<Category> getCategory(@PathVariable("nameCategory") String nameCategory)   
-	{  
-		return categoryservice.getCategoryByName(nameCategory);  
-	}  
+
 	
 	
 }

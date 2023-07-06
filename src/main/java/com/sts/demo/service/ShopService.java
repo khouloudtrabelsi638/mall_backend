@@ -23,10 +23,5 @@ public class ShopService {
 	
 	
 	
-	public List<Shop> getShopByName(String nameShop)   
-	{  List<Shop> shop = new ArrayList<Shop>(); 
-		  shopRepository.findByName(nameShop).forEach(name1 -> shop.add(name1));
-		  return shop;
-	} 
 
 }

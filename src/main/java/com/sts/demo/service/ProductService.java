@@ -27,9 +27,4 @@ public class ProductService {
 	
 	
 	
-	public List<Product> getProductByName(String nameProduct)   
-	{  List<Product> product = new ArrayList<Product>(); 
-	productRepository.findByName(nameProduct).forEach(name1 -> product.add(name1));
-		  return product;
-	} 
 }

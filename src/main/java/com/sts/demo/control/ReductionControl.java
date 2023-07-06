@@ -29,12 +29,6 @@ public List<Reduction> getReductions(){
 }
 
 
-@GetMapping("/{nameReduction}")  
-private List<Reduction> getReduction(@PathVariable("nameReduction") String nameReduction)   
-{  
-	return reductionservice.getReductionByName(nameReduction);  
-}  
-
 
 
 }

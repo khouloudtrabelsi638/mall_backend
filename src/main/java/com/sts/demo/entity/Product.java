@@ -1,7 +1,5 @@
 package com.sts.demo.entity;
-
-import java.util.Collection;
-
+import com.sts.demo.entity.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +21,7 @@ public class Product {
 	private String nameProduct;
 	@ManyToOne
 	@JoinColumn(name="idShop", nullable=false)
-	private Collection<Shop> shop;
+	private Shop shop;
 	
 	private float price;
 	private String descriptionProduct;
@@ -69,14 +67,14 @@ public class Product {
 
 
 	 
-	public Collection<Shop> getShop() {
+	public Shop getShop() {
 		return shop;
 	}
 
 
 
 
-	public void setShop(Collection<Shop> shop) {
+	public void setShop(Shop shop) {
 		this.shop = shop;
 	}
 

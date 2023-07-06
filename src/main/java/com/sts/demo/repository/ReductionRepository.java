@@ -11,5 +11,5 @@ import com.sts.demo.entity.Reduction;
 
 @Repository
 public interface ReductionRepository extends JpaRepository<Reduction,Integer>  {
-	List<Reduction> findByName(String nameReduction);
+	 
 }
