@@ -21,7 +21,7 @@ public class Shop {
 @Id
 @GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idShop; 
-
+private String imageReduction;
 	private String nameShop;
 	private String localisationShop;
 	
@@ -29,9 +29,8 @@ public class Shop {
 @JoinColumn(name="idCategory", nullable=false)
 	private Category category;
 
-	private String timeopen;
-	private String timeclose;
-	private String descriptionShop;
+	 
+	 
 
 
 
@@ -89,41 +88,25 @@ public void setCategory(Category category) {
 }
 
 
+
+
+
+public String getImageReduction() {
+	return imageReduction;
+}
+
+
+
+
+
+public void setImageReduction(String imageReduction) {
+	this.imageReduction = imageReduction;
+}
+
+
+  
+
  
-public String getTimeopen() {
-	return timeopen;
-}
-
-
-
-public void setTimeopen(String timeopen) {
-	this.timeopen = timeopen;
-}
-
-
-@Column (name="timeclose")
-public String getTimeclose() {
-	return timeclose;
-}
-
-
-
-public void setTimeclose(String timeclose) {
-	this.timeclose = timeclose;
-}
-
-
-@Column (name="descriptionShop ")
-public String getDescriptionShop () {
-	return descriptionShop ;
-}
-
-
-
-public void setDescriptionShop (String descriptionShop ) {
-	this.descriptionShop  = descriptionShop ;
-}
-
 
 
 }

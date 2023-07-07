@@ -26,8 +26,8 @@ public class Product {
 	private float price;
 	private String descriptionProduct;
 	private String localisationProduct;
-	private Boolean stock;
-	
+	 
+	private String imageProduct;
 	
 	
 	
@@ -39,6 +39,15 @@ public class Product {
 
 
  
+
+	public Product(String imageProduct) {
+		super();
+		this.imageProduct = imageProduct;
+	}
+
+
+
+
 
 	public int getIdProduct() {
 		return idProduct;
@@ -122,16 +131,21 @@ public class Product {
 
 
 
-	 
-	public Boolean getStock() {
-		return stock;
+	  
+
+
+
+
+	public String getImageProduct() {
+		return imageProduct;
 	}
 
 
 
 
-	public void setStock(Boolean stock) {
-		this.stock = stock;
+
+	public void setImageProduct(String imageProduct) {
+		this.imageProduct = imageProduct;
 	}
 	
 	

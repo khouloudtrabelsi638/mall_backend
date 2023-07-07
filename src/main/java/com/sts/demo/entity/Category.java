@@ -14,17 +14,18 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long idCategory;
-	
+	private String imageCategory;
 	private String nameCategory;
 
 public Category() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public Category(Long idCategory, String nameCategory) {
+public Category(Long idCategory, String nameCategory, String imageCategory) {
 	super();
 	this.idCategory = idCategory;
 	this.nameCategory = nameCategory;
+	this.imageCategory= imageCategory;
 }
 
 public Long getIdCategory() {
@@ -39,6 +40,12 @@ public String getNameCategory() {
 }
 public void setNameCategory(String nameCategory) {
 	this.nameCategory = nameCategory;
+}
+public String getImageCategory() {
+	return imageCategory;
+}
+public void setImageCategory(String imageCategory) {
+	this.imageCategory = imageCategory;
 }
  
 
