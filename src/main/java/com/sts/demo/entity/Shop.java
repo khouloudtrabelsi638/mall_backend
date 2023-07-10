@@ -21,7 +21,7 @@ public class Shop {
 @Id
 @GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idShop; 
-private String imageReduction;
+private String imageShop;
 	private String nameShop;
 	private String localisationShop;
 	
@@ -91,16 +91,16 @@ public void setCategory(Category category) {
 
 
 
-public String getImageReduction() {
-	return imageReduction;
+public String getImageShop() {
+	return imageShop;
 }
 
 
 
 
 
-public void setImageReduction(String imageReduction) {
-	this.imageReduction = imageReduction;
+public void setImageShop(String imageShop) {
+	this.imageShop = imageShop;
 }
 
 

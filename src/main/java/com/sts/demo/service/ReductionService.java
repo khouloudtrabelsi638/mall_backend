@@ -23,6 +23,10 @@ public List<Reduction> getReductions(){
 	return reduction;  
 }
 
-
+public List<Reduction> getReductionByName(String nameReduction)   
+{  List<Reduction> reductionfind = new ArrayList<Reduction>();  
+reductionRepository.findByNameReduction(nameReduction);
+	  return reductionfind;
+}  
 
 }

@@ -24,7 +24,11 @@ public class ProductService {
 		productRepository.findAll().forEach(product1 -> product.add(product1));  
 		return product;  
 	}
-	
+	public List<Product> getProductByName(String nameProduct)   
+	{  List<Product> productfind = new ArrayList<Product>();  
+	productRepository.findByNameProduct(nameProduct);
+		  return  productfind;
+	}  
 	
 	
 }

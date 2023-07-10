@@ -1,7 +1,7 @@
 package com.sts.demo.control;
 
 import java.util.List;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +14,8 @@ import com.sts.demo.service.ReductionService;
 
 @RestController
 @RequestMapping(path="api/mall-1/Reduction")
+
+@CrossOrigin(origins = "http://localhost:4200")
 public class ReductionControl {
 @Autowired 
 public final ReductionService reductionservice;
@@ -29,6 +31,10 @@ public List<Reduction> getReductions(){
 }
 
 
-
+@GetMapping("reductions/{nameReduction}")  
+private List<Reduction> getReduction(@PathVariable("nameReduction") String nameReduction)   
+{  
+	return reductionservice.getReductionByName(nameReduction);  
+}
 
 }

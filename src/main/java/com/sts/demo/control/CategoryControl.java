@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.sts.demo.entity.Category;
 import com.sts.demo.service.CategoryService;
 
 @RestController
-@RequestMapping(path="api/mall-1/Catgeory")
+@RequestMapping(path="api/mall-1/Category")
+
+@CrossOrigin(origins = "http://localhost:4200")
 public class CategoryControl {
 
 	@Autowired
@@ -31,7 +34,11 @@ public class CategoryControl {
 		return categoryservice.getCategories();
 	}
 	
-
+	@GetMapping("/categories/{nameCategory}")  
+	private List<Category> getCategory(@PathVariable("nameCategory") String nameCategory)   
+	{  
+		return categoryservice.getCategoryByName(nameCategory);  
+	}
 	
 	
 }
