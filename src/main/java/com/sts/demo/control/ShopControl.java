@@ -35,6 +35,9 @@ private List<Shop> getShop(@PathVariable("nameShop") String nameShop)
 {  
 	return shopService.getShopByName(nameShop);  
 }
-
-
+@GetMapping("/shops/{category}")  
+ 
+public List<Shop> getShopsByCategory(@PathVariable("category") Category category) {
+    return shopService.getShopsByCategory(category);
+}
 }

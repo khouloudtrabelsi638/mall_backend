@@ -26,6 +26,11 @@ public class ShopService {
 		  shopRepository.findByNameShop(nameShop).forEach(shop1 -> shopfind.add(shop1));
 		  return shopfind;
 	}
-	
+	 
+	public List<Shop> getShopsByCategory(Category category) {
+		List<Shop> shopcategory = new ArrayList<Shop>();  
+        shopRepository.findByCategory(category).forEach(shop1 -> shopcategory.add(shop1));
+        return shopcategory;
+    }
 
 }
