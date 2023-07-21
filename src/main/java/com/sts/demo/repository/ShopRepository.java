@@ -16,5 +16,7 @@ public interface ShopRepository extends JpaRepository<Shop,Integer> {
 	@Query(value="SELECT * FROM Shop WHERE nameShop = ?")
 	   public List<Shop> findByNameShop(String nameShop);
 	
-	List<Shop> findByCategory(Category category);
+	
+	@Query(value="SELECT * FROM Shop,Category WHERE Shop.category.idCategory == Category.idCategory")
+	List<Shop> findByCategory( Category category );
 }
