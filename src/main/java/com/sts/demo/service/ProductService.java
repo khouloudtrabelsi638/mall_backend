@@ -2,6 +2,7 @@ package com.sts.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class ProductService {
 	
 	 
 
+	public Product addProduct(Product product) {
+        return productRepository.save(product);
+    }
 
 	public List<Product> getProducts(){
 		List<Product> product = new ArrayList<Product>();  
@@ -29,6 +33,25 @@ public class ProductService {
 	productRepository.findByNameProduct(nameProduct);
 		  return  productfind;
 	}  
-	
+ public void deletePRODUCT(Integer id) {
+
+	productRepository.deleteById(id);
+    }
+	  public Optional<Product> getProductById(Integer id) {
+	        return productRepository.findById(id);
+	    }
+
+	    public Product updateProduct(Product updatedProduct) {
+	        Product existingProduct = productRepository.findById(updatedProduct.getIdProduct())
+	                                                  .orElseThrow();
+
+	        existingProduct.setNameProduct(updatedProduct.getNameProduct());
+	        existingProduct.setShop(updatedProduct.getShop());
+	        existingProduct.setPrice(updatedProduct.getPrice());
+	        existingProduct.setDescriptionProduct(updatedProduct.getDescriptionProduct());
+	        existingProduct.setImageProduct(updatedProduct.getImageProduct());
+
+	        return productRepository.save(existingProduct);
+	    }
 	
 }

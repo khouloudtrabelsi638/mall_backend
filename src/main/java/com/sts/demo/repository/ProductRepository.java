@@ -8,9 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sts.demo.entity.Category;
 import com.sts.demo.entity.Product;
+import com.sts.demo.entity.Shop;
 
 @Repository
 public interface ProductRepository  extends JpaRepository<Product,Integer>{
 	 @Query(value="SELECT * FROM Product WHERE nameProduct = ?")
 	   public List<Product> findByNameProduct(String nameProduct);
+	    List<Product> findByShop(Shop shop);
+
 }

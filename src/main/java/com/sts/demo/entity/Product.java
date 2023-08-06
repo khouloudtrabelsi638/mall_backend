@@ -1,4 +1,7 @@
 package com.sts.demo.entity;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.sts.demo.entity.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,11 +24,12 @@ public class Product {
 	private String nameProduct;
 	@ManyToOne
 	@JoinColumn(name="idShop", nullable=false)
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+
 	private Shop shop;
 	
 	private float price;
 	private String descriptionProduct;
-	private String localisationProduct;
 	 
 	private String imageProduct;
 	
@@ -117,17 +121,7 @@ public class Product {
 
 
 
-	 
-	public String getLocalisationProduct() {
-		return localisationProduct;
-	}
-
-
-
-
-	public void setLocalisationProduct(String localisationProduct) {
-		this.localisationProduct = localisationProduct;
-	}
+	
 
 
 

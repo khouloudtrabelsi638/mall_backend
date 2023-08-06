@@ -11,7 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 @Entity
 @Table(name="Shop")
 public class Shop {
@@ -25,9 +26,10 @@ private String imageShop;
 	private String nameShop;
 	private String localisationShop;
 	
-@ManyToOne
-@JoinColumn(name="idCategory", nullable=false)
-	private Category category;
+	@ManyToOne
+    @JoinColumn(name = "idCategory", nullable = false)
+    @Cascade({CascadeType.DETACH})
+    private Category category;
 
 	 
 	 

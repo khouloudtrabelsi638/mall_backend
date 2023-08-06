@@ -1,6 +1,9 @@
 package com.sts.demo.entity;
  
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,11 +23,12 @@ public class Reduction {
 	private float newprice;
 	private float pourcentage;
 	private String imageReduction;
-	private String localisationReduction;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="idProduct", nullable=false)
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+
 	private Product product;
 	
 	
@@ -39,23 +43,6 @@ public class Reduction {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	
-	
-	 
-
-
-
-	 
-	 
-	 
-
-
-
-	
-
-
-
 	public Reduction(int idReduction, String nameReduction, float newprice, float pourcentage, String imageReduction,
 			String localisationReduction, Product product) {
 		super();
@@ -64,7 +51,6 @@ public class Reduction {
 		this.newprice = newprice;
 		this.pourcentage = pourcentage;
 		this.imageReduction = imageReduction;
-		this.localisationReduction = localisationReduction;
 		this.product = product;
 	}
 
@@ -72,104 +58,13 @@ public class Reduction {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public String getImageReduction() {
+public String getImageReduction() {
 		return imageReduction;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public void setImageReduction(String imageReduction) {
 		this.imageReduction = imageReduction;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public String getLocalisationReduction() {
-		return localisationReduction;
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public void setLocalisationReduction(String localisationReduction) {
-		this.localisationReduction = localisationReduction;
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public Product getProduct() {
+public Product getProduct() {
 		return product;
 	}
 
