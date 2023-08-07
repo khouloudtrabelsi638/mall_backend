@@ -2,19 +2,40 @@ package com.sts.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sts.demo.entity.Category;
+import com.sts.demo.entity.Product;
 import com.sts.demo.entity.Reduction;
 import com.sts.demo.repository.ReductionRepository;
 
 @Service
 public class ReductionService {
 	
-	@Autowired
-public ReductionRepository reductionRepository;
+	  private final ReductionRepository reductionRepository;
+	    private final ProductService productService;
+
+	    @Autowired
+	    public ReductionService(ReductionRepository reductionRepository, ProductService productService) {
+	        this.reductionRepository = reductionRepository;
+	        this.productService = productService;
+	    }
+	    public Reduction addReduction(Reduction reduction) {
+	        int productId = reduction.getProduct().getIdProduct();
+	        Optional<Product> optionalProduct = productService.getProductById(productId);
+	        
+	        if (optionalProduct.isEmpty()) {
+	            throw new IllegalArgumentException("Product not found with id: " + productId);
+	        }
+
+	        Product product = optionalProduct.get();
+	        reduction.setProduct(product);
+	        return reductionRepository.save(reduction);
+	    
+	    }
 
 
 public List<Reduction> getReductions(){
@@ -33,9 +54,6 @@ public Reduction getReductionById(int id) {
                              .orElseThrow();
 }
 
-public Reduction addReduction(Reduction reduction) {
-    return reductionRepository.save(reduction);
-}
 
 public Reduction updateReduction(int id, Reduction updatedReduction) {
     Reduction existingReduction = getReductionById(id);

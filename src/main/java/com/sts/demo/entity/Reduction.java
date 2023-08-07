@@ -26,10 +26,11 @@ public class Reduction {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="idProduct", nullable=false)
-	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    @JoinColumn(name = "id_product")
+    @Cascade({CascadeType.DETACH})
 
-	private Product product;
+    private Product product;
+
 	
 	
 	

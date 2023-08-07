@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,8 +44,9 @@ private List<Reduction> getReduction(@PathVariable("nameReduction") String nameR
 }
 
 @PostMapping("/add")
-public Reduction addReduction(@RequestBody Reduction reduction) {
-    return reductionservice.addReduction(reduction);
+public ResponseEntity<Reduction> addReduction(@RequestBody Reduction reduction) {
+    Reduction savedReduction = reductionservice.addReduction(reduction);
+    return new ResponseEntity<>(savedReduction, HttpStatus.CREATED);
 }
 
 @PutMapping("update/{id}")
