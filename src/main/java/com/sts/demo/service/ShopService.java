@@ -18,16 +18,18 @@ public class ShopService {
 	@Autowired
 	public ShopRepository shopRepository;
 	    private final ProductRepository productRepository;
-	public Shop addShop(Shop shop) {
-        return shopRepository.save(shop);
-    }
-	 
-
+	    
 	    @Autowired
 	    public ShopService(ShopRepository shopRepository, ProductRepository productRepository) {
 	        this.shopRepository = shopRepository;
 	        this.productRepository = productRepository;
 	    }
+	public Shop addShop(Shop shop) {
+        return shopRepository.save(shop);
+    }
+	 
+
+	   
 	    @Transactional
 	    public void deleteShopById(int shopId) {
 	        Shop shop = shopRepository.findById(shopId).orElse(null);
