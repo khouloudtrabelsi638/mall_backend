@@ -66,7 +66,7 @@ public List<Shop> getShopsByCategory(@PathVariable("categoryId")  Category categ
     return shopService.getShopsByCategory( category);
 }
 private String saveImage(MultipartFile image) throws IOException {
-    String uploadDir = "C:/Users/khoul/OneDrive/Bureau/up"; // Update with your actual directory path
+    String uploadDir = "C:/Users/khoul/OneDrive/Bureau/up"; 
     String filename = UUID.randomUUID().toString() + "." + StringUtils.getFilenameExtension(image.getOriginalFilename());
     Path imagePath = Paths.get(uploadDir).resolve(filename);
 
