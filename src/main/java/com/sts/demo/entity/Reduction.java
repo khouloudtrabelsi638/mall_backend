@@ -22,7 +22,6 @@ public class Reduction {
  private String nameReduction;
 	private float newprice;
 	private float pourcentage;
-	private String imageReduction;
 	
 	
 	@ManyToOne
@@ -44,14 +43,13 @@ public class Reduction {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Reduction(int idReduction, String nameReduction, float newprice, float pourcentage, String imageReduction,
+	public Reduction(int idReduction, String nameReduction, float newprice, float pourcentage, 
 			String localisationReduction, Product product) {
 		super();
 		this.idReduction = idReduction;
 		this.nameReduction = nameReduction;
 		this.newprice = newprice;
 		this.pourcentage = pourcentage;
-		this.imageReduction = imageReduction;
 		this.product = product;
 	}
 
@@ -59,12 +57,7 @@ public class Reduction {
 
 
 
-public String getImageReduction() {
-		return imageReduction;
-	}
-	public void setImageReduction(String imageReduction) {
-		this.imageReduction = imageReduction;
-	}
+
 public Product getProduct() {
 		return product;
 	}

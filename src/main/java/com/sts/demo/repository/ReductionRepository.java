@@ -14,4 +14,8 @@ import com.sts.demo.entity.Reduction;
 public interface ReductionRepository extends JpaRepository<Reduction,Integer>  {
 	@Query(value="SELECT * FROM Reduction WHERE nameReduction = ?")
 	   public List<Reduction> findByNameReduction(String nameReduction);
+    void deleteByProduct(Product product);
+    List<Reduction> findByProduct(Product product);
+
+
 }

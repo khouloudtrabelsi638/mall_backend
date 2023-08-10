@@ -42,13 +42,13 @@ import com.sts.demo.service.ShopService;
 @CrossOrigin(origins = "http://localhost:4200")
 public class ShopControl {
 @Autowired
-public final ShopService shopService;
- 
+private final ShopService shopService;
+private final CategoryService categoryService;
 
-public ShopControl(ShopService shopService ) {
-	super();
-	this.shopService = shopService;
-	 
+@Autowired
+public ShopControl(ShopService shopService, CategoryService categoryService) {
+    this.shopService = shopService;
+    this.categoryService = categoryService;
 }
 @GetMapping("shops")
 public List<Shop> getShops(){
@@ -133,9 +133,42 @@ public ResponseEntity<Void> deleteshop(@PathVariable Integer id) {
     }
 }
 @PutMapping("update/{id}")
-public ResponseEntity<Shop> updateShop(@PathVariable int id, @RequestBody Shop updatedShop) {
-    Shop updatedShopEntity = shopService.updateShop(id, updatedShop);
-    return ResponseEntity.ok(updatedShopEntity);
+public ResponseEntity<Shop> updateShop(
+        @PathVariable int id,
+        @RequestParam(name = "newImage", required = false) MultipartFile newImage,
+        @ModelAttribute Shop updatedShop
+) {
+    Optional<Shop> shopOptional = shopService.getShopById(id);
+
+    if (shopOptional.isPresent()) {
+        Shop shop = shopOptional.get();
+        shop.setNameShop(updatedShop.getNameShop());
+        shop.setLocalisationShop(updatedShop.getLocalisationShop());
+
+        // Update the category if it's provided in the updatedShop
+        if (updatedShop.getCategory() != null) {
+            Category category = categoryService.getCategoryById(updatedShop.getCategory().getIdCategory())
+                    .orElseThrow();
+
+            shop.setCategory(category);
+        }
+
+        // Update the image if a new image is provided
+        if (newImage != null && !newImage.isEmpty()) {
+            try {
+                String imageUrl = saveImage(newImage);
+                shop.setImageShop(imageUrl);
+            } catch (IOException e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
+        // Save the updated shop
+        Shop savedShop = shopService.updateShop(id, shop); // Use the correct method signature
+
+        return ResponseEntity.ok(savedShop);
+    } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
-  
 }

@@ -60,7 +60,6 @@ public Reduction updateReduction(int id, Reduction updatedReduction) {
     existingReduction.setNameReduction(updatedReduction.getNameReduction());
     existingReduction.setNewprice(updatedReduction.getNewprice());
     existingReduction.setPourcentage(updatedReduction.getPourcentage());
-    existingReduction.setImageReduction(updatedReduction.getImageReduction());
     existingReduction.setProduct(updatedReduction.getProduct());
     return reductionRepository.save(existingReduction);
 }
