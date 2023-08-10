@@ -78,17 +78,18 @@ private String saveImage(MultipartFile image) throws IOException {
 @PostMapping("/add")
 public ResponseEntity<Shop> addShop(@RequestParam("image") MultipartFile image,
                                     @RequestParam("nameShop") String nameShop,
-                                    @RequestParam("localisationShop") String localisationShop,
+                                    @RequestParam("localisationShop") MultipartFile localisationShop,
                                     @RequestParam("idCategory") Long idCategory) {
     try {
         String imageUrl = saveImage(image);
+        String localisationUrl = saveImage(localisationShop); 
 
         Category category = new Category();
         category.setIdCategory(idCategory);
 
         Shop shop = new Shop();
         shop.setNameShop(nameShop);
-        shop.setLocalisationShop(localisationShop);
+        shop.setLocalisationShop(localisationUrl); 
         shop.setCategory(category);
         shop.setImageShop(imageUrl);
 
@@ -99,8 +100,6 @@ public ResponseEntity<Shop> addShop(@RequestParam("image") MultipartFile image,
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
     }
 }
-
-
 @GetMapping("/images/{imageName:.+}")
 public ResponseEntity<Resource> getImage(@PathVariable String imageName) throws IOException {
     Path imagePath = Paths.get("C:/Users/khoul/OneDrive/Bureau/up").resolve(imageName);
@@ -136,6 +135,7 @@ public ResponseEntity<Void> deleteshop(@PathVariable Integer id) {
 public ResponseEntity<Shop> updateShop(
         @PathVariable int id,
         @RequestParam(name = "newImage", required = false) MultipartFile newImage,
+        @RequestParam(name = "newLocalisationImage", required = false) MultipartFile newLocalisationImage,
         @ModelAttribute Shop updatedShop
 ) {
     Optional<Shop> shopOptional = shopService.getShopById(id);
@@ -153,7 +153,6 @@ public ResponseEntity<Shop> updateShop(
             shop.setCategory(category);
         }
 
-        // Update the image if a new image is provided
         if (newImage != null && !newImage.isEmpty()) {
             try {
                 String imageUrl = saveImage(newImage);
@@ -163,12 +162,22 @@ public ResponseEntity<Shop> updateShop(
             }
         }
 
+        if (newLocalisationImage != null && !newLocalisationImage.isEmpty()) {
+            try {
+                String localisationImageUrl = saveImage(newLocalisationImage);
+                shop.setLocalisationShop(localisationImageUrl);
+            } catch (IOException e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
         // Save the updated shop
-        Shop savedShop = shopService.updateShop(id, shop); // Use the correct method signature
+        Shop savedShop = shopService.updateShop(id, shop);
 
         return ResponseEntity.ok(savedShop);
     } else {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
+
 }
