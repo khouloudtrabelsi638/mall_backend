@@ -126,7 +126,6 @@ public class CategoryControl {
 	             }
 	         }
 
-	         // Save the updated category
 	         Category savedCategory = categoryservice.updateCategory(category);
 
 	         return new ResponseEntity<>(savedCategory, HttpStatus.OK);
